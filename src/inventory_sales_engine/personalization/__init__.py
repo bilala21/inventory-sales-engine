@@ -1,0 +1,2 @@
+"""Evidence-grounded message drafting."""
+

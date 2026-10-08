@@ -1,0 +1,44 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "inventory-sales-engine"
+version = "0.1.0"
+description = "A safety-first, review-only outbound sales engine."
+readme = "README.md"
+requires-python = ">=3.12,<3.14"
+dependencies = [
+  "alembic>=1.16,<2",
+  "email-validator>=2.2,<3",
+  "fastapi>=0.116,<1",
+  "google-api-python-client>=2.170,<3",
+  "google-auth-oauthlib>=1.2,<2",
+  "httpx>=0.28,<1",
+  "psycopg[binary]>=3.2,<4",
+  "pydantic-settings>=2.10,<3",
+  "sqlalchemy>=2.0,<3",
+  "uvicorn>=0.35,<1",
+]
+
+[project.optional-dependencies]
+dev = [
+  "hypothesis>=6.130,<7",
+  "pytest>=8.4,<10",
+  "pytest-asyncio>=1.1,<2",
+  "pytest-cov>=6.2,<8",
+]
+
+[project.scripts]
+inventory-sales-engine = "inventory_sales_engine.__main__:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/inventory_sales_engine"]
+
+[tool.pytest.ini_options]
+addopts = "-ra --strict-markers"
+testpaths = ["tests"]
+
+[tool.coverage.run]
+branch = true
+source = ["inventory_sales_engine"]
